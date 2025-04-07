@@ -1,68 +1,47 @@
-let input = document.getElementById("inp")
-let btn = document.getElementById("btn")
-let list = document.getElementById("list")
-let todoArr = []
-let id = 1;
-getData();
+let min = document.getElementById("min")
+let sec = document.getElementById("sec")
+let startBtn = document.getElementById("start")
+let pauseBtn = document.getElementById("pause")
+
+let secCount = 0;
+let intervalId = 0;
 
 
-
-
-function showTask(data){
-    let li = document.createElement("li")
-
-    li.addEventListener("click" , (event)=>{
-        let localdata = JSON.parse(localStorage.getItem("todo"))
-        let filterData = localdata.filter((task)=>{
-           
-            return task.taskId != data.taskId
-        })
-
-        localStorage.setItem("todo" ,JSON.stringify(filterData) )
-
-        list.removeChild(event.target)
-    })
-
-
-    li.innerText = data.task;
-    list.appendChild(li);
-}
-
-
-function getData(){
-    let data = JSON.parse(localStorage.getItem("todo"))
-
-    todoArr = data || [];
-    if(todoArr.length){
-        id = todoArr[todoArr.length-1].taskId
-        id++;
-    
-    }
-    todoArr.forEach((v)=>{
-
-        showTask(v)
-       
-    })
+for(var i = 0 ; i < 5 ; i++){
+    setTimeout(()=>{
+        console.log(i);
+    } , 2000);
 
 }
 
-btn.addEventListener("click",(e)=>{
-    let data = {
-        task: input.value,
-        taskId  : id
-    }
 
-    todoArr.push(data);
 
-    localStorage.setItem("todo" ,JSON.stringify(todoArr) )
-   
 
-    showTask(data)
 
-    input.value = ""
-    id++;
 
-})
+
+
+// startBtn.addEventListener("click",()=>{
+//     intervalId = setInterval(()=>{
+//         sec.innerText = secCount
+//         secCount++;
+//     },1000)
+// })
+
+// pauseBtn.addEventListener("click",()=>{
+//   clearInterval(intervalId)
+//   sec.innerText = "00"
+// secCount = 0;
+// })
+
+
+
+
+
+
+
+
+
 
 
 
